@@ -2,7 +2,7 @@ const buildsNode = document.getElementById("builds");
 const buildMock = document.getElementById("build-mocked");
 
 const expand = (Element) => {
-    const expandable = Element.children[1];
+    const expandable = Element.parentNode.children[1];
     expandable.style.display = expandable.style.display === "none" ? "block" : "none"
 }
 
