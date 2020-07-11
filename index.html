@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zeelog Builds</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/b/be/Lineage_OS_Logo.png"
+            alt="LineageOS Logo"
+          />
+        </div>
+        <h2>LineageOS Builds for Redmi Note 4/4X</h2>
+        <h3>Zeelog</h3>
+      </div>
+      <div class="content">
+        <div id="builds">
+          <div class="build" id="build-mocked" onclick="expand(this)">
+            <p class="name">
+              lineage-17.1-20200711-UNOFFICIAL-3.18-mido.zip &#10549;
+            </p>
+            <div class="expandable">
+              <div class="tag">Tag: <span>5.0</span></div>
+              <div class="date">Date: <span>2020-07-11T14:55:55Z</span></div>
+              <div class="downloads">Downloads: <span>20</span></div>
+              <div class="size">Size: <span>603.99 MB</span></div>
+              <div class="changelog">
+                Changelog: <br /><span
+                  >- July security patch 
+                  - Synced latest LineageOS sources as of
+                  11 July 2020
+                  - Synced kernel with latest CAF Tag, Google's
+                  android-3.18 and WLAN Prima as of 11 July 2020 - Merged latest
+                  CAF tags as of 11 July 2020</span
+                >
+              </div>
+              <div class="download">
+                <select id="gapps">
+                  <option value="no">Which GApps?</option>
+                  <option value="pico">OpenGapps pico</option>
+                  <option value="nano">OpenGapps nano</option>
+                  <option value="micro">OpenGapps micro</option>
+                </select>
+                <button class="downloadbtn">Download ROM + OpenGapps pico</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <div class="credits">
+          <span>Website by <a href="">andersonmendess</a></span>
+          <span>Builds by <a href="">zeelog</a></span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
