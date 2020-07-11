@@ -2,6 +2,8 @@ body {
     font-family: 'Open Sans', sans-serif;
     background-color: #157B7F;
     color: #fafafa;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .container {
@@ -21,17 +23,17 @@ body {
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-color: white;
-    border-radius: 50px;
+    border-radius: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .logo img {
-    width: 90px;
+    width: 80px;
     position: relative;
 }
 
@@ -49,18 +51,35 @@ body {
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 5px;
+    width: 100%;
 }
 
-.build .name {
+.build .build-header .name {
     user-select: none;
     font-weight: 600;
     cursor: pointer;
+}
+
+.build .build-header .name:hover {
+    color: #157B7F;
+}
+
+.build .build-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.build .build-header img {
+    height: 20px;
+    padding-left: 20px;
 }
 
 .expandable {
     background-color: #efefef;
     padding: 5px;
     border-radius: 5px;
+    display: none;
 }
 
 .changelog {

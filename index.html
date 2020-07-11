@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name=referrer content=no-referrer>
     <title>Zeelog Builds</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
@@ -25,9 +26,13 @@
       <div class="content">
         <div id="builds">
           <div class="build" id="build-mocked">
-            <p class="name" onclick="expand(this)">
-              lineage-17.1-20200711-UNOFFICIAL-3.18-mido.zip &#10549;
-            </p>
+            <div class="build-header"onclick="expand(this)" >
+                <p class="name" >
+                    lineage-17.1-20200711-UNOFFICIAL-3.18-mido.zip
+                </p>
+                <img src="https://img.icons8.com/material-outlined/24/000000/down-squared.png"/>
+            </div>
+            
             <div class="expandable">
               <div class="tag">Tag: <span><!-- TAG --></span></div>
               <div class="date">Date: <span><!-- DATE --></span></div>
@@ -39,13 +44,11 @@
                 >
               </div>
               <div class="download">
-                <select id="gapps">
-                  <option value="no">Which GApps?</option>
-                  <option value="pico">OpenGapps pico</option>
-                  <option value="nano">OpenGapps nano</option>
-                  <option value="micro">OpenGapps micro</option>
+                <select class="gapps">
+                    <option value="" >Select Gapps</option>
+ 
                 </select>
-                <button class="downloadbtn">Download ROM + OpenGapps pico</button>
+                <button class="downloadbtn">Download Now</button>
               </div>
             </div>
           </div>
