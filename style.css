@@ -1,126 +1,130 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #157B7F;
-    color: #fafafa;
-    max-width: 800px;
-    margin: 0 auto;
+  font-family: "Open Sans", sans-serif;
+  background-color: #157b7f;
+  color: #fafafa;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .container {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
-    width: 60%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding-bottom: 20px;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 20px;
 }
 
 .logo {
-    width: 80px;
-    height: 80px;
-    background-color: white;
-    border-radius: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo img {
-    width: 80px;
-    position: relative;
+  width: 80px;
+  position: relative;
 }
 
 .content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #builds {
-    background-color: white;
-    color: #000;
-    padding: 5px;
-    padding-left: 30px;
-    padding-right: 30px;
-    border-radius: 5px;
-    width: 100%;
+  background-color: white;
+  color: #000;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .build .build-header .name {
-    user-select: none;
-    font-weight: 600;
-    cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .build .build-header .name:hover {
-    color: #157B7F;
+  color: #157b7f;
 }
 
 .build .build-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .build .build-header img {
-    height: 20px;
-    padding-left: 20px;
+  height: 20px;
+  padding-left: 20px;
 }
 
 .expandable {
-    background-color: #efefef;
-    padding: 5px;
-    border-radius: 5px;
-    display: none;
+  background-color: #efefef;
+  padding: 5px;
+  border-radius: 5px;
+  display: none;
 }
 
 .changelog {
-    white-space: pre-line;
+  white-space: pre-line;
 }
 
-.tag, .downloads, .size, .changelog, .date {
-    font-weight: 600;
+.tag,
+.downloads,
+.size,
+.changelog,
+.date {
+  font-weight: 600;
 }
 
 span {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .downloadbtn {
-    width: 100%;
-    border: none;
-    background-color: #157B7F;
-    height: 35px;
-    border-radius: 3px;
-    color: #fff;
-    font-weight: 600;
-    padding: 10px;
-    margin-left: 10px;
-    cursor: pointer;
+  width: 100%;
+  border: none;
+  background-color: #157b7f;
+  height: 35px;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .download {
-    display: flex;
-    margin-top: 30px;
+  display: flex;
+  margin-top: 30px;
 }
 
 .download select {
-    border: none;
-    background-color: #157B7F;
-    border-radius: 3px;
-    height: 35px;
-    color: #fff;
-    font-weight: 600;
+  border: none;
+  background-color: #157b7f;
+  border-radius: 3px;
+  height: 35px;
+  color: #fff;
+  font-weight: 600;
 }
 
 #build-mocked {
-    display: none;
+  display: none;
 }
