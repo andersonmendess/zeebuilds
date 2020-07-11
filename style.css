@@ -85,6 +85,7 @@ span {
     font-weight: 600;
     padding: 10px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .download {
@@ -103,9 +104,4 @@ span {
 
 #build-mocked {
     display: none;
-}
-
-
-.build .expandable {
-    transition: ease-in-out;
 }
