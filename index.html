@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="no-referrer" />
     <title>Zeelog Builds</title>
+    
+    <link rel="icon" sizes="16x16 32x32" href="https://download.lineageos.org/static/favicons/favicon-144.png">
+
+    <meta name="msapplication-TileColor" content="#0F7D81">
+    <meta name="theme-color" content="#0F7D81">
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
       rel="stylesheet"
@@ -16,19 +21,21 @@
       <div class="header">
         <div class="logo">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/b/be/Lineage_OS_Logo.png"
+            src="https://download.lineageos.org/static/favicons/favicon-144.png"
             alt="LineageOS Logo"
           />
         </div>
-        <h2>LineageOS Builds for Redmi Note 4/4X</h2>
-        <h3>Zeelog</h3>
+        <div class="title">
+            <h2>LineageOS Builds for Redmi Note 4/4X</h2>
+            <h5>Releases by Zeelog</h5>
+        </div>
       </div>
       <div class="content">
         <div id="builds">
           <div class="build" id="build-mocked">
             <div class="build-header" onclick="expand(this)">
               <p class="name">
-                lineage-17.1-20200711-UNOFFICIAL-3.18-mido.zip
+                
               </p>
               <img
                 src="https://img.icons8.com/material-outlined/24/000000/down-squared.png"
@@ -37,7 +44,7 @@
 
             <div class="expandable">
               <div class="tag">
-                Tag: <span><!-- TAG --></span>
+                Release: <span><!-- TAG --></span>
               </div>
               <div class="date">
                 Date: <span><!-- DATE --></span>
@@ -63,8 +70,16 @@
       </div>
       <div class="footer">
         <div class="credits">
-          <span>Website by <a href="">andersonmendess</a></span>
-          <span>Builds by <a href="">zeelog</a></span>
+          <div>
+            Website by
+            <a href="https://github.com/andersonmendess">andersonmendess</a> |
+            Builds by <a href="https://github.com/zeelog">zeelog</a> (<a href="https://github.com/zeelog/OTA">source</a>)
+          </div>
+          <div>
+            <a href="https://github.com/zeelog/android_device_xiaomi_mido">Device</a> |
+            <a href="https://github.com/zeelog/android_kernel_xiaomi_mido">Kernel</a> |
+            <a href="https://github.com/zeelog/proprietary_vendor_xiaomi">Vendor</a>
+          </div>
         </div>
       </div>
     </div>

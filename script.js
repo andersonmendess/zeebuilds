@@ -74,7 +74,7 @@ const humanSize = (bytes) => {
 fetchReleases().then((res) => drawList(res));
 
 const drawList = (builds) => {
-  builds.forEach((build) => {
+  builds.forEach((build, index) => {
     const buildEl = buildMock.cloneNode(true);
     buildEl.removeAttribute("id");
 
@@ -108,6 +108,8 @@ const drawList = (builds) => {
     nodes.downloads.innerText = build.assets[0].download_count;
     nodes.date.innerText = formatDate(build.assets[0].created_at);
     nodes.changelog.innerText = build.body;
+
+    if(index === 0) buildEl.lastChild.previousElementSibling.style.display = "block"
 
     buildsNode.appendChild(buildEl);
   });
