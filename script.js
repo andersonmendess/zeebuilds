@@ -3,9 +3,15 @@ const buildMock = document.getElementById("build-mocked");
 
 const expand = (Element) => {
   const expandable = Element.parentNode.children[1];
-  expandable.style.display =
-    expandable.style.display !== "block" ? "block" : "none";
+  let state = expandable.style.maxHeight !== "400px";
+  expandable.style.maxHeight = state ? "400px" : "0px";
+  expandable.style.padding = state ? "10px" : "0px"
+  rotateArrow(Element.lastElementChild, state)
 };
+
+const rotateArrow = (Element, state) => {
+    Element.style.transform = state ? "rotate(180deg)" : "rotate(0deg)";
+}
 
 const fetchReleases = async () => {
   const res = await fetch("https://api.github.com/repos/zeelog/OTA/releases");
@@ -109,8 +115,11 @@ const drawList = (builds) => {
     nodes.date.innerText = formatDate(build.assets[0].created_at);
     nodes.changelog.innerText = build.body;
 
-    if(index === 0) buildEl.lastChild.previousElementSibling.style.display = "block"
-
+    if (index === 0){
+        buildEl.lastChild.previousElementSibling.style.maxHeight = "400px";
+        buildEl.lastChild.previousElementSibling.style.padding = "10px";
+        rotateArrow(buildEl.firstElementChild.childNodes[3], true)
+    }
     buildsNode.appendChild(buildEl);
   });
 };

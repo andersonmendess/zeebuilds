@@ -6,6 +6,10 @@ body {
   margin: 0 auto;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+  }
+
 .container {
   min-height: 100vh;
 }
@@ -47,10 +51,19 @@ body {
     font-size: small;
 }
 
+.build {
+    overflow: hidden;
+}
+
 .build .build-header .name {
   user-select: none;
   font-weight: 600;
   cursor: pointer;
+}
+
+.build .build-header img {
+    padding-left: 0px !important;
+    transition: transform 0.5s ease;
 }
 
 .build .build-header .name:hover {
@@ -72,7 +85,10 @@ body {
   background-color: #efefef;
   padding: 10px;
   border-radius: 5px;
-  display: none;
+  max-height: 0px;
+  padding: 0px;
+  transition: padding 0.3s, max-height 0.3s cubic-bezier(0, 1, 1, 1.5);
+
 }
 
 .changelog {
