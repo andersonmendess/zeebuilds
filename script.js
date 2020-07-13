@@ -39,34 +39,38 @@ fetchJSON("https://api.opengapps.org/list").then((res) => {
   });
 });
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-
-  const d = date.getDate();
-  const m = date.getMonth() + 1; //Month from 0 to 11
-  const y = date.getFullYear();
-
-  return `${date.getFullYear()}/${m <= 9 ? "0" + m : m}/${
-    d <= 9 ? "0" + d : d
-  }`;
+const downloadUtils = {
+  generateDownloadLink: (base) =>
+    `${base}?r=&ts=${downloadUtils.timestamp()}&use_mirror=autoselect`,
+  timestamp: () => {
+    const d = new Date();
+    return Math.floor(d.getTime() / 1000);
+  },
 };
 
-const getDownloadLink = (baselink) => {
-  return `${baselink}?r=&ts=${getTimestamp()}&use_mirror=autoselect`;
-};
-function getTimestamp() {
-  var d = new Date();
-  return Math.floor(d.getTime() / 1000);
-}
+const formatters = {
+  date: (dateString) => {
+    const date = new Date(dateString);
 
-const humanSize = (bytes) => {
-  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-  if (bytes == 0) return "0 Byte";
-  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-  return `${Math.round(bytes / Math.pow(1024, i), 2)} ${sizes[i]}`;
+    const d = date.getDate();
+    const m = date.getMonth() + 1; //Month from 0 to 11
+    const y = date.getFullYear();
+
+    return `${date.getFullYear()}/${m <= 9 ? "0" + m : m}/${
+      d <= 9 ? "0" + d : d
+    }`;
+  },
+  size: (bytes) => {
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+    if (bytes == 0) return "0 Byte";
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return `${Math.round(bytes / Math.pow(1024, i), 2)} ${sizes[i]}`;
+  },
 };
 
-fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) => drawList(res));
+fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) =>
+  drawList(res)
+);
 
 const drawList = (builds) => {
   builds.forEach((build, index) => {
@@ -91,14 +95,18 @@ const drawList = (builds) => {
       const rom = build.assets[0].browser_download_url;
 
       if (rom) window.location = rom;
-      if (gapps) setTimeout(() => (window.location = getDownloadLink(gapps)), 2500);
+      if (gapps)
+        setTimeout(
+          () => (window.location = downloadUtils.generateDownloadLink(gapps)),
+          2500
+        );
     });
 
     nodes.name.innerText = build.assets[0].name;
     nodes.tag.innerText = build.tag_name;
-    nodes.size.innerText = humanSize(build.assets[0].size);
+    nodes.size.innerText = formatters.size(build.assets[0].size);
     nodes.downloads.innerText = build.assets[0].download_count;
-    nodes.date.innerText = formatDate(build.assets[0].created_at);
+    nodes.date.innerText = formatters.date(build.assets[0].created_at);
     nodes.changelog.innerText = build.body;
 
     if (index === 0) {
