@@ -113,13 +113,17 @@ const buildFactory = (baseElement) => {
 
 const drawList = (builds) => {
   builds.forEach((buildData, index) => {
+
+    const { name, size, download_count: downloads, 
+      created_at: date, browser_download_url: url } = buildData.assets[0];
+    const { tag_name: tag, body: changelog } = buildData;
+
     const build = buildFactory(buildMock);
 
     build.nodes.button.addEventListener("click", function () {
       const gapps = build.nodes.option.value;
-      const rom = buildData.assets[0].browser_download_url;
 
-      if (rom) window.location = rom;
+      if (url) window.location = url;
       if (gapps)
         setTimeout(
           () => (window.location = downloadUtils.generateDownloadLink(gapps)),
@@ -127,12 +131,12 @@ const drawList = (builds) => {
         );
     });
 
-    build.set.name(buildData.assets[0].name);
-    build.set.tag(buildData.tag_name);
-    build.set.size(formatters.size(buildData.assets[0].size));
-    build.set.downloads(buildData.assets[0].download_count);
-    build.set.date(formatters.date(buildData.assets[0].created_at));
-    build.set.changelog(buildData.body);
+    build.set.name(name);
+    build.set.tag(tag);
+    build.set.size(formatters.size(size));
+    build.set.downloads(downloads);
+    build.set.date(formatters.date(date));
+    build.set.changelog(changelog);
 
     if (index === 0) {
       build.elements.container.style.maxHeight = "400px";
