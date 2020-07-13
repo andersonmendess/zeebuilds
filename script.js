@@ -5,13 +5,13 @@ const expand = (Element) => {
   const expandable = Element.parentNode.children[1];
   let state = expandable.style.maxHeight !== "400px";
   expandable.style.maxHeight = state ? "400px" : "0px";
-  expandable.style.padding = state ? "10px" : "0px"
-  rotateArrow(Element.lastElementChild, state)
+  expandable.style.padding = state ? "10px" : "0px";
+  rotateArrow(Element.lastElementChild, state);
 };
 
 const rotateArrow = (Element, state) => {
-    Element.style.transform = state ? "rotate(180deg)" : "rotate(0deg)";
-}
+  Element.style.transform = state ? "rotate(180deg)" : "rotate(0deg)";
+};
 
 const fetchReleases = async () => {
   const res = await fetch("https://api.github.com/repos/zeelog/OTA/releases");
@@ -98,14 +98,11 @@ const drawList = (builds) => {
     };
 
     nodes.button.addEventListener("click", function () {
-      window.location = build.assets[0].browser_download_url;
       const gapps = nodes.option.value;
+      const rom = build.assets[0].browser_download_url;
 
-      if (gapps) {
-        setTimeout(() => {
-          window.location = getDownloadLink(gapps);
-        }, 1500);
-      }
+      if (rom) window.location = rom;
+      if (gapps) setTimeout(() => (window.location = getDownloadLink(gapps)), 2500);
     });
 
     nodes.name.innerText = build.assets[0].name;
@@ -115,10 +112,10 @@ const drawList = (builds) => {
     nodes.date.innerText = formatDate(build.assets[0].created_at);
     nodes.changelog.innerText = build.body;
 
-    if (index === 0){
-        buildEl.lastChild.previousElementSibling.style.maxHeight = "400px";
-        buildEl.lastChild.previousElementSibling.style.padding = "10px";
-        rotateArrow(buildEl.firstElementChild.childNodes[3], true)
+    if (index === 0) {
+      buildEl.lastChild.previousElementSibling.style.maxHeight = "400px";
+      buildEl.lastChild.previousElementSibling.style.padding = "10px";
+      rotateArrow(buildEl.firstElementChild.childNodes[3], true);
     }
     buildsNode.appendChild(buildEl);
   });
