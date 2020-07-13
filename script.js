@@ -72,27 +72,52 @@ fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) =>
   drawList(res)
 );
 
+const buildFactory = (baseElement) => {
+  const Element = baseElement.cloneNode(true);
+
+  const show = () => Element.removeAttribute("id");
+
+  const nodes = {
+    name: Element.children[0].getElementsByClassName("name")[0],
+    tag: Element.children[1].getElementsByClassName("tag")[0].children[0],
+    size: Element.children[1].getElementsByClassName("size")[0].children[0],
+    date: Element.children[1].getElementsByClassName("date")[0].children[0],
+    downloads: Element.children[1].getElementsByClassName("downloads")[0].children[0],
+    changelog: Element.children[1].getElementsByClassName("changelog")[0].children[0],
+    button: Element.children[1].getElementsByClassName("downloadbtn")[0],
+    option: Element.children[1].getElementsByClassName("gapps")[0]
+  }
+
+  const set = {
+    name: (name) => { nodes.name.innerText = name },
+    tag: (tag) => { nodes.tag.innerText = tag },
+    size: (size) => { nodes.size.innerText = size },
+    date: (date) => { nodes.date.innerText = date },
+    downloads: (downloads) => { nodes.downloads.innerText = downloads },
+    changelog: (changelog) => { nodes.changelog.innerText = changelog },
+  }
+
+  const elements = {
+    arrowIcon: Element.firstElementChild.childNodes[3],
+    container: Element.lastChild.previousElementSibling,
+  }
+
+  return {
+    Element,
+    show,
+    nodes,
+    set,
+    elements,
+  }
+}
+
 const drawList = (builds) => {
-  builds.forEach((build, index) => {
-    const buildEl = buildMock.cloneNode(true);
-    buildEl.removeAttribute("id");
+  builds.forEach((buildData, index) => {
+    const build = buildFactory(buildMock);
 
-    const nodes = {
-      name: buildEl.children[0].getElementsByClassName("name")[0],
-      tag: buildEl.children[1].getElementsByClassName("tag")[0].children[0],
-      size: buildEl.children[1].getElementsByClassName("size")[0].children[0],
-      date: buildEl.children[1].getElementsByClassName("date")[0].children[0],
-      downloads: buildEl.children[1].getElementsByClassName("downloads")[0]
-        .children[0],
-      changelog: buildEl.children[1].getElementsByClassName("changelog")[0]
-        .children[0],
-      button: buildEl.children[1].getElementsByClassName("downloadbtn")[0],
-      option: buildEl.children[1].getElementsByClassName("gapps")[0],
-    };
-
-    nodes.button.addEventListener("click", function () {
-      const gapps = nodes.option.value;
-      const rom = build.assets[0].browser_download_url;
+    build.nodes.button.addEventListener("click", function () {
+      const gapps = build.nodes.option.value;
+      const rom = buildData.assets[0].browser_download_url;
 
       if (rom) window.location = rom;
       if (gapps)
@@ -102,18 +127,20 @@ const drawList = (builds) => {
         );
     });
 
-    nodes.name.innerText = build.assets[0].name;
-    nodes.tag.innerText = build.tag_name;
-    nodes.size.innerText = formatters.size(build.assets[0].size);
-    nodes.downloads.innerText = build.assets[0].download_count;
-    nodes.date.innerText = formatters.date(build.assets[0].created_at);
-    nodes.changelog.innerText = build.body;
+    build.set.name(buildData.assets[0].name);
+    build.set.tag(buildData.tag_name);
+    build.set.size(formatters.size(buildData.assets[0].size));
+    build.set.downloads(buildData.assets[0].download_count);
+    build.set.date(formatters.date(buildData.assets[0].created_at));
+    build.set.changelog(buildData.body);
 
     if (index === 0) {
-      buildEl.lastChild.previousElementSibling.style.maxHeight = "400px";
-      buildEl.lastChild.previousElementSibling.style.padding = "10px";
-      rotateArrow(buildEl.firstElementChild.childNodes[3], true);
+      build.elements.container.style.maxHeight = "400px";
+      build.elements.container.style.padding = "10px";
+      rotateArrow(build.elements.arrowIcon, true);
     }
-    buildsNode.appendChild(buildEl);
+
+    build.show();
+    buildsNode.appendChild(build.Element);
   });
 };
