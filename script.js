@@ -3,7 +3,7 @@ const buildMock = document.getElementById("build-mocked");
 
 const expand = (Element) => {
   const expandable = Element.parentNode.children[1];
-  let state = expandable.style.maxHeight !== "400px";
+  const state = expandable.style.maxHeight !== "400px";
   expandable.style.maxHeight = state ? "400px" : "0px";
   expandable.style.padding = state ? "10px" : "0px";
   rotateArrow(Element.lastElementChild, state);
@@ -13,8 +13,8 @@ const rotateArrow = (Element, state) => {
   Element.style.transform = state ? "rotate(180deg)" : "rotate(0deg)";
 };
 
-const fetchReleases = async () => {
-  const res = await fetch("https://api.github.com/repos/zeelog/OTA/releases");
+const fetchJSON = async (url) => {
+  const res = await fetch(url);
 
   if (res.status != 200) {
     alert("Failed to load Resources");
@@ -24,18 +24,7 @@ const fetchReleases = async () => {
   return await res.json();
 };
 
-const fetchGapps = async () => {
-  const res = await fetch("https://api.opengapps.org/list");
-
-  if (res.status != 200) {
-    alert("Failed to load Resources");
-    return;
-  }
-
-  return await res.json();
-};
-
-fetchGapps().then((res) => {
+fetchJSON("https://api.opengapps.org/list").then((res) => {
   let allSelects = Array.from(document.getElementsByClassName("gapps"));
 
   const variants = res.archs.arm64.apis["10.0"].variants;
@@ -77,7 +66,7 @@ const humanSize = (bytes) => {
   return `${Math.round(bytes / Math.pow(1024, i), 2)} ${sizes[i]}`;
 };
 
-fetchReleases().then((res) => drawList(res));
+fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) => drawList(res));
 
 const drawList = (builds) => {
   builds.forEach((build, index) => {
