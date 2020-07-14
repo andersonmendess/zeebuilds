@@ -95,6 +95,7 @@ const buildFactory = (baseElement) => {
     date: (date) => { nodes.date.innerText = date },
     downloads: (downloads) => { nodes.downloads.innerText = downloads },
     changelog: (changelog) => { nodes.changelog.innerText = changelog },
+    button: (button) => { nodes.button.innerText = button }
   }
 
   const elements = {
@@ -123,12 +124,20 @@ const drawList = (builds) => {
     build.nodes.button.addEventListener("click", function () {
       const gapps = build.nodes.option.value;
 
+      build.set.button("Download ROM...")
+
       if (url) window.location = url;
-      if (gapps)
+      if (gapps){
         setTimeout(
-          () => (window.location = downloadUtils.generateDownloadLink(gapps)),
-          2500
+          () => {
+            build.set.button("Download GApps...")
+            window.location = downloadUtils.generateDownloadLink(gapps)
+            setTimeout(() => { build.set.button("Done!") }, 2000)
+          },
+          3500
         );
+      }
+
     });
 
     build.set.name(name);
