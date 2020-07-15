@@ -1,7 +1,15 @@
 # zeebuilds
-friendly download page for zeelog builds | built with vanilla web stuff (lightweight asf)
+friendly download page for zeelog builds | built with vanilla web stuff
 
-## Deploys:
-Github Pages  ->  [zeebuilds](https://andersonmendess.github.io/zeebuilds/)
+# Highlights
+ - GApps downloader
+ - Lightweight (no third party libs or frameworks)
+ - Beautiful and Responsive
+ - Always updated (github & opengapps api integrated)
 
-Zeit  ->  [zeebuilds](https://zeebuilds.vercel.app/)
+
+# Deploys:
+[Github](https://andersonmendess.github.io/zeebuilds/), [Vercel](https://zeebuilds.vercel.app/)
+
+# Preview
+<img src="preview.png" />
