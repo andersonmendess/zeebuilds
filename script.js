@@ -132,11 +132,11 @@ const drawList = (builds) => {
           () => {
             build.set.button("Download GApps...")
             window.location = downloadUtils.generateDownloadLink(gapps)
-            setTimeout(() => { build.set.button("Done!") }, 2000)
           },
           3500
         );
       }
+      setTimeout(() => { build.set.button("Done!") }, 5500)
 
     });
 
