@@ -63,6 +63,10 @@ body::-webkit-scrollbar {
     width: 120px;
     margin-right: 7px;
   }
+
+  .header {
+    padding: 0px
+  }
   
 }
 
