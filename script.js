@@ -21,7 +21,7 @@ const fetchJSON = async (url) => {
     return;
   }
 
-  return await res.json();
+  return res.json();
 };
 
 fetchJSON("https://api.opengapps.org/list").then((res) => {
