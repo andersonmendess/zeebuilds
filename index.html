@@ -1,107 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="referrer" content="no-referrer" />
-    <title>Zeelog Builds</title>
 
-    <link
-      rel="icon"
-      sizes="16x16 32x32"
-      href="https://download.lineageos.org/static/favicons/favicon-144.png"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Zeelog Builds</title>
 
-    <meta name="msapplication-TileColor" content="#0F7D81" />
-    <meta name="theme-color" content="#0F7D81" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@400;500&display=swap" rel="stylesheet">    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <div class="logo">
-          <svg
-            id="los-logo"
-            viewBox="0 0 512 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="512" height="512" fill="#157b7f" />
-            <g fill="none" stroke="#fff" stroke-width="16.2">
-              <circle cx="256" cy="256" r="72" />
-              <circle cx="96" cy="296" r="32" />
-              <circle cx="416" cy="296" r="32" />
-              <path
-                d="m122 281c23.3-9.37 41.5-15 66-19.4m202 19.4c-23.3-9.37-41.5-15-66-19.4"
-              />
-            </g>
-            <circle cx="256" cy="256" r="32" fill="#fff" />
-          </svg>
-        </div>
-        <div class="title">
-          <h2>LineageOS Builds for Redmi Note 4/4X</h2>
-          <h5 class="subtitle">Releases by Zeelog</h5>
-        </div>
+  <link rel="icon" sizes="16x16 32x32" href="https://download.lineageos.org/static/favicons/favicon-144.png" />
+
+  <meta name="msapplication-TileColor" content="#0F7D81" />
+  <meta name="theme-color" content="#0F7D81" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <svg id="los-logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <rect width="512" height="512" fill="#157b7f" />
+          <g fill="none" stroke="#fff" stroke-width="16.2">
+            <circle cx="256" cy="256" r="72" />
+            <circle cx="96" cy="296" r="32" />
+            <circle cx="416" cy="296" r="32" />
+            <path d="m122 281c23.3-9.37 41.5-15 66-19.4m202 19.4c-23.3-9.37-41.5-15-66-19.4" />
+          </g>
+          <circle cx="256" cy="256" r="32" fill="#fff" />
+        </svg>
       </div>
-      <div class="content">
-        <div id="builds">
-          <div class="build" id="build-mocked">
-            <div class="build-header" onclick="expand(this)">
-              <p class="name"></p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-            </div>
-
-            <div class="expandable">
-              <div class="tag">
-                Release: <span><!-- TAG --></span>
-              </div>
-              <div class="date">
-                Date: <span><!-- DATE --></span>
-              </div>
-              <div class="downloads">
-                Downloads: <span><!-- DOWNLOADS --></span>
-              </div>
-              <div class="size">
-                Size: <span><!-- SIZE --></span>
-              </div>
-              <div class="changelog">
-                Changelog:<span class="subtitle"><!-- CHANGELOG --></span>
-              </div>
-              <div class="download">
-                <select class="gapps">
-                  <option value="">Select Gapps</option>
-                </select>
-                <button class="downloadbtn">Download Now</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="title">
+        <h2>LineageOS Builds for Redmi Note 4/4X</h2>
+        <h5 class="subtitle">Releases by Zeelog</h5>
       </div>
-      <div class="footer">
-        <div class="credits">
-          <div>
-            Website by
-            <a href="https://github.com/andersonmendess">andersonmendess</a> |
-            Builds by <a href="https://github.com/zeelog">zeelog</a> (<a
-              href="https://github.com/zeelog/OTA"
-              >source</a
-            >)
+    </div>
+    <div class="content">
+      <div id="builds">
+        <div class="build" id="build-mocked">
+          <div class="build-header" onclick="expand(this)">
+            <p class="name"></p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px">
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" /></svg>
           </div>
-          <div>
-            <a href="https://github.com/zeelog/android_device_xiaomi_mido"
-              >Device</a
-            >
-            |
-            <a href="https://github.com/zeelog/android_kernel_xiaomi_mido"
-              >Kernel</a
-            >
-            |
-            <a href="https://github.com/zeelog/proprietary_vendor_xiaomi"
-              >Vendor</a
-            >
+
+          <div class="expandable">
+            <div class="tag">
+              Release: <span>
+                <!-- TAG --></span>
+            </div>
+            <div class="date">
+              Date: <span>
+                <!-- DATE --></span>
+            </div>
+            <div class="downloads">
+              Downloads: <span>
+                <!-- DOWNLOADS --></span>
+            </div>
+            <div class="size">
+              Size: <span>
+                <!-- SIZE --></span>
+            </div>
+            <div class="changelog">
+              Changelog:<span class="subtitle">
+                <!-- CHANGELOG --></span>
+            </div>
+            <div class="download">
+              <select class="gapps">
+                <option value="">Select Gapps</option>
+              </select>
+              <button class="downloadbtn">Download Now</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
-  <script src="script.js"></script>
+    <div class="footer">
+      <div class="credits">
+        <div>
+          Website by
+          <a href="https://github.com/andersonmendess">andersonmendess</a> |
+          Builds by <a href="https://github.com/zeelog">zeelog</a> (<a href="https://github.com/zeelog/OTA">source</a>)
+        </div>
+        <div>
+          <a href="https://github.com/zeelog/android_device_xiaomi_mido">Device</a>
+          |
+          <a href="https://github.com/zeelog/android_kernel_xiaomi_mido">Kernel</a>
+          |
+          <a href="https://github.com/zeelog/proprietary_vendor_xiaomi">Vendor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="script.js"></script>
+
 </html>
