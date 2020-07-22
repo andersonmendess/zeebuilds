@@ -68,9 +68,19 @@ const formatters = {
   },
 };
 
-fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) =>
-  drawList(res)
-);
+fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) => {
+  drawList(res, "3.18")
+
+  const tabs = Array.from(document.getElementsByClassName("tab"));
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", function(){
+      tabs.forEach(tab => tab.classList.remove("active"));
+      drawList(res, this.innerText);
+      this.classList.add("active")
+    });
+  })
+});
 
 const buildFactory = (baseElement) => {
   const Element = baseElement.cloneNode(true);
@@ -112,7 +122,14 @@ const buildFactory = (baseElement) => {
   }
 }
 
-const drawList = (builds) => {
+const drawList = (builds, target) => {
+
+  buildsNode.innerHTML = "";
+
+  builds = builds.filter((build) => {
+    return build.assets[0].name.includes(target)
+  });
+
   builds.forEach((buildData, index) => {
 
     const { name, size, download_count: downloads, 

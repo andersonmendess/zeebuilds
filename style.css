@@ -19,6 +19,7 @@ body::-webkit-scrollbar {
 
 .container {
   min-height: 100vh;
+  padding: 10px;
 }
 
 .header {
@@ -31,26 +32,63 @@ body::-webkit-scrollbar {
 }
 
 .content {
-  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+
+.tabs {
+  width: 100%;
+  background-color: var(--backgroundColor);
+  display: inline-flex;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 5px;
+  padding-bottom: 4px;
+  justify-content: space-evenly;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tabs .tab:hover {
+  color: var(--primaryColor);
+}
+
+.tabs .tab {
+  font-weight: 500;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+.tabs .active {
+  border-bottom: 4px solid var(--primaryColor);
 }
 
 #builds {
   background-color: var(--backgroundColor);
   padding: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   width: 100%;
   margin: 7px;
+  margin-top: 0px;
+  border-top: 1px solid rgba(100, 100, 100, 0.2);
   margin-bottom: 50px;
 }
 
 
 .build {
     overflow: hidden;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 #los-logo {
