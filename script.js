@@ -117,6 +117,14 @@ fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) => {
   })
 });
 
+const backgroundDownloader = (url) => {
+  const frame = document.createElement("frame");
+  frame.src = url
+  frame.style.display = "none";
+
+  buildsNode.appendChild(frame)
+}
+
 const buildFactory = (baseElement) => {
   const Element = baseElement.cloneNode(true);
 
@@ -176,19 +184,8 @@ const drawList = (builds, target) => {
     build.nodes.button.addEventListener("click", function () {
       const gapps = build.nodes.option.value;
 
-      build.set.button("Download ROM...")
-
-      if (url) window.location = url;
-      if (gapps){
-        setTimeout(
-          () => {
-            build.set.button("Download GApps...")
-            window.location = downloadUtils.generateDownloadLink(gapps)
-          },
-          3500
-        );
-      }
-      setTimeout(() => { build.set.button("Done!") }, 5500)
+      if (url) backgroundDownloader(url)
+      if (gapps) backgroundDownloader(downloadUtils.generateDownloadLink(gapps))
 
     });
 
