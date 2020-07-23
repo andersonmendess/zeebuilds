@@ -1,6 +1,8 @@
 const buildsNode = document.getElementById("builds");
 const buildMock = document.getElementById("build-mocked");
 
+let buildsResponse = [];
+
 const expand = (Element) => {
   const expandable = Element.parentNode.children[1];
   const state = expandable.style.maxHeight !== "400px";
@@ -25,18 +27,20 @@ const fetchJSON = async (url) => {
 };
 
 fetchJSON("https://api.opengapps.org/list").then((res) => {
-  let allSelects = Array.from(document.getElementsByClassName("gapps"));
+  const select = buildMock.getElementsByClassName("gapps")[0];
 
   const variants = res.archs.arm64.apis["10.0"].variants;
 
-  allSelects.forEach((select) => {
-    variants.forEach((variant) => {
-      let option = document.createElement("option");
-      option.text = `OpenGapps ${variant.name}`;
-      option.value = variant.zip;
-      select.appendChild(option);
-    });
+  variants.forEach((variant) => {
+    let option = document.createElement("option");
+    option.text = `OpenGapps ${variant.name}`;
+    option.value = variant.zip;
+    select.appendChild(option);
   });
+
+  if(buildsResponse.length > 0){
+    drawList(buildsResponse, "3.18");
+  }
 });
 
 const downloadUtils = {
@@ -47,6 +51,13 @@ const downloadUtils = {
     return Math.floor(d.getTime() / 1000);
   },
 };
+
+const calcNewestDays = (dateString) => {
+  const buildDate = new Date(dateString);
+  const today = new Date();
+  const diff = today.getTime() - buildDate.getTime();
+  return Math.round(diff / (1000 * 3600 * 24)); 
+}
 
 const formatters = {
   date: (dateString) => {
@@ -69,14 +80,38 @@ const formatters = {
 };
 
 fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) => {
+  buildsResponse = res;
   drawList(res, "3.18")
+
+  const getLast = (target) => res.filter(build => build.assets[0].name.includes(target))[0];
 
   const tabs = Array.from(document.getElementsByClassName("tab"));
 
   tabs.forEach((tab) => {
+
+    const latest = getLast(tab.dataset.target);
+    const daysSince = calcNewestDays(latest.assets[0].created_at)
+
+    if(!isNaN(daysSince)){
+      let text = "";
+
+      if(daysSince === 0){
+        text = "Today" 
+      } else {
+        text = `${daysSince} ${daysSince > 1 ? "days" : "day"} ago`
+      }
+
+      tab.children.innerText = `${daysSince}`
+      const span = document.createElement("span");
+      span.classList.add("updated");
+      span.innerHTML = text;
+
+      tab.appendChild(span)
+    }
+
     tab.addEventListener("click", function(){
       tabs.forEach(tab => tab.classList.remove("active"));
-      drawList(res, this.innerText);
+      drawList(res, this.dataset.target);
       this.classList.add("active")
     });
   })
