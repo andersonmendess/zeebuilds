@@ -1,7 +1,10 @@
 const buildsNode = document.getElementById("builds");
 const buildMock = document.getElementById("build-mocked");
 
-let buildsResponse = [];
+const state = {
+  builds: [],
+  target: "3.18"
+}
 
 const expand = (Element) => {
   const expandable = Element.parentNode.children[1];
@@ -38,8 +41,8 @@ fetchJSON("https://api.opengapps.org/list").then((res) => {
     select.appendChild(option);
   });
 
-  if(buildsResponse.length > 0){
-    drawList(buildsResponse, "3.18");
+  if(state.builds.length){
+    drawList(state);
   }
 });
 
@@ -80,8 +83,8 @@ const formatters = {
 };
 
 fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) => {
-  buildsResponse = res;
-  drawList(res, "3.18")
+  state.builds = res;
+  drawList(state)
 
   const getLast = (target) => res.filter(build => build.assets[0].name.includes(target))[0];
 
@@ -111,7 +114,8 @@ fetchJSON("https://api.github.com/repos/zeelog/OTA/releases").then((res) => {
 
     tab.addEventListener("click", function(){
       tabs.forEach(tab => tab.classList.remove("active"));
-      drawList(res, this.dataset.target);
+      state.target = this.dataset.target;
+      drawList(state);
       this.classList.add("active")
     });
   })
@@ -165,7 +169,7 @@ const buildFactory = (baseElement) => {
   }
 }
 
-const drawList = (builds, target) => {
+const drawList = ({builds, target}) => {
 
   buildsNode.innerHTML = "";
 
