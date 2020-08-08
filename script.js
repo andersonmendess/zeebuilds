@@ -192,9 +192,11 @@ const drawList = ({builds, target}) => {
       if (gapps) backgroundDownloader(downloadUtils.generateDownloadLink(gapps))
 
     });
+    
+    const reversedIndex = builds.length - index;
 
     build.set.name(name);
-    build.set.tag(tag);
+    build.set.tag(`#${reversedIndex}`);
     build.set.size(formatters.size(size));
     build.set.downloads(downloads);
     build.set.date(formatters.date(date));
