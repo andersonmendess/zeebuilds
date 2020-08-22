@@ -9,7 +9,7 @@
 body {
   font-family: "Roboto", sans-serif;
   background-color: var(--primaryColor);
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 

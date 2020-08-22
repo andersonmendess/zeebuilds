@@ -8,8 +8,8 @@ const state = {
 
 const expand = (Element) => {
   const expandable = Element.parentNode.children[1];
-  const state = expandable.style.maxHeight !== "400px";
-  expandable.style.maxHeight = state ? "400px" : "0px";
+  const state = expandable.style.maxHeight !== "500px";
+  expandable.style.maxHeight = state ? "500px" : "0px";
   expandable.style.padding = state ? "10px" : "0px";
   rotateArrow(Element.lastElementChild, state);
 };
@@ -203,7 +203,7 @@ const drawList = ({builds, target}) => {
     build.set.changelog(changelog);
 
     if (index === 0) {
-      build.elements.container.style.maxHeight = "400px";
+      build.elements.container.style.maxHeight = "500px";
       build.elements.container.style.padding = "10px";
       rotateArrow(build.elements.arrowIcon, true);
     }
