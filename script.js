@@ -6,6 +6,32 @@ const state = {
   target: "3.18"
 }
 
+const processText = (text) => {
+  let lines = text.split("\n");
+
+  // break first line if needed;
+  if(lines[0].trim() !== ""){
+    lines = [" ", ...lines];
+  }
+
+
+  lines = lines.map((line, index) => {
+    // remove paypal html button, we cant render it
+    if(line.includes("paypal")){
+      return;
+    }
+
+    // remove lasts empty line
+    if(lines[index].trim() ===  "" && index != 0){
+      return;
+    }
+
+    return line.trim();
+  }).filter((line) => line !== undefined);
+
+  return lines.join("\n");
+} 
+
 const expand = (Element) => {
   const expandable = Element.parentNode.children[1];
   const state = expandable.style.maxHeight !== "500px";
@@ -151,7 +177,7 @@ const buildFactory = (baseElement) => {
     size: (size) => { nodes.size.innerText = size },
     date: (date) => { nodes.date.innerText = date },
     downloads: (downloads) => { nodes.downloads.innerText = downloads },
-    changelog: (changelog) => { nodes.changelog.innerText = changelog },
+    changelog: (changelog) => { nodes.changelog.innerText = processText(changelog) },
     button: (button) => { nodes.button.innerText = button }
   }
 
